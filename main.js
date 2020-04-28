@@ -9,8 +9,11 @@ function createWindow () {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      // frame: false, //默认为true 是否显示菜单栏
       webviewTag: true,
-      nodeIntegration: true
+      nodeIntegration: true,
+      show:false,
+      // backgroundColor: "#000000"
     }
   })
 
@@ -21,6 +24,15 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
   mainWindow.on("closed", function(){
     mainWindow = null
+  })
+
+  mainWindow.once("ready-to-show",()=>{
+    mainWindow.show()
+  });
+
+  childWin = new BrowserWindow({
+    parent: mainWindow,
+    modal: true
   })
 }
 

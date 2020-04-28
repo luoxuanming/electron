@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>这是弹出的子窗口</h2>
+  <button id="btn">向父窗口传递信息</button>
+</body>
+<script>
+  let oBtn = document.getElementById("btn");
+  oBtn.onclick = function() {
+    // window.opener.postMessage("这是来自于子窗口的问候");
+    window.opener.postMessage({
+      type:1,
+      message: "这是来自于子窗口的问候"
+    });
+  }
+</script>
+</html>

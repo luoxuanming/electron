@@ -29,34 +29,43 @@ dragWrapper.addEventListener("dragover", (e) => {
 });
 
 //webview实例
-const wb = document.getElementById("wb");
-const loading = document.querySelector("#loading")
-wb.addEventListener("did-start-loading", () => {
-  loading.innerHTML = "loading..."
-});
-  wb.addEventListener("did-stop-loading", () => {
-    loading.innerHTML = "OK."
-    wb.insertCSS(`
-    #su {
-      background: red !important;
-    }
-`);
-  wb.executeJavaScript(`
-    setTimeout(()=>{
-      alert(document.getElementById('su').value);
-    },2000);
-  `);  
-  // wb.openDevTools();
-});
+// const wb = document.getElementById("wb");
+// const loading = document.querySelector("#loading")
+// wb.addEventListener("did-start-loading", () => {
+//   loading.innerHTML = "loading..."
+// });
+//   wb.addEventListener("did-stop-loading", () => {
+//     loading.innerHTML = "OK."
+//     wb.insertCSS(`
+//     #su {
+//       background: red !important;
+//     }
+// `);
+//   wb.executeJavaScript(`
+//     setTimeout(()=>{
+//       alert(document.getElementById('su').value);
+//     },2000);
+//   `);  
+//   // wb.openDevTools();
+// });
 
 
 
-
+//打开新窗口
+let subWin;
 function openNewWindow() {
-  window.open("https://www.baidu.com","baidu");
+  subWin = window.open("popup_page.html", "popup");
 }
+window.addEventListener("message", (msg) => {
+  console.log("接受到的消息:", msg)
+})
 
 let oBtn2 = document.getElementById("btn2");
 oBtn2.onclick = function () {
   openNewWindow()
+}
+
+let oCloseBtn = document.getElementById("close-btn");
+oCloseBtn.onclick = function () {
+  subWin.close();
 }

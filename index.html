@@ -6,13 +6,22 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <title>Hello World!</title>
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <div>
+      <h2>弹出子窗口</h2>
+      <button id="btn2">弹出</button>
+    </div>
+    <h2>process</h2>  
+    <button id="btn">查看process信息</button>
 
+    <div class="for_file_drag" id="drag_test">
+      <h2>Files对象</h2>
+      <span>往这里拖文件</span>
+    </div>
+    <span id="loading"></span>
+    <webview id="wb" src="https://www.baidu.com" style="height: 400px;" preload="./webview_test/preload.js"/>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
   </body>
